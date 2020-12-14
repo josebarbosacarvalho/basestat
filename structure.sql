@@ -64,9 +64,9 @@ CREATE TABLE publicContract
   ocid ocid VARCHAR(30) NOT NULL,
   tenderId VARCHAR(20) NOT NULL,
   contractId VARCHAR(12) NOT NULL
-  awardId
-  description
-  status
+  awardId VARCHAR(8) NOT NULL
+  description VARCHAR(2000),
+  status VARCHAR(360),
   startDate
   endDate
   durationInDays

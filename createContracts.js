@@ -1,5 +1,6 @@
 var readlines = require('n-readlines');
 var fs = require('fs');
+const { start } = require('repl');
 var liner = new readlines('base2.json');
 var outputFileName = "createdFiles/contracts.txt";
 
@@ -16,7 +17,7 @@ var optionsAfter = {
     enconding: "utf-8",
     flag: "a",
 };
-var sep = "|";
+var sep = '|';
 
 
 // for each contract
@@ -43,34 +44,39 @@ while (contractLine = liner.next()) {
             var dateSigned = "";
 
             if (contract.id != null) {
-                id = contract.id;
-                id = id.replace(sep, " ");
+                id = contract.id.toString();
+                id = id.replace(/|/g, " ");
+                id = id.trim();
                 id = id.replace(/\r?\n|\r/g, " ");
             }
             if (contract.awardID != null) {
                 awardId = contract.awardID;
-                awardId = awardId.replace(sep, " ");
+                awardId = awardId.replace(/|/g, " ");
+                awardId = awardId.trim();
                 awardId = awardId.replace(/\r?\n|\r/g, " ");
             }
             if (contract.description != null) {
                 description = contract.description;
-                description = description.replace(sep, " ");
+                description = description.replace(/|/g, " ");
+                description = description.trim();
                 description = description.replace(/\r?\n|\r/g, " ");
-
             }
             if (contract.status != null) {
                 status = contract.status;
-                status = status.replace(sep, " ");
+                status = status.replace(/|/g, " ");
+                status = status.trim();
                 status = status.replace(/\r?\n|\r/g, " ");
             }
             if (contract.period.startDate != null) {
                 startDate = contract.period.startDate;
-                startDate = startDate.replace(sep, " ");
+                startDate = startDate.replace(/|/g, " ");
+                startDate = startDate.trim();
                 startDate = startDate.replace(/\r?\n|\r/g, " ");
             }
             if (contract.period.endDate != null) {
                 endDate = contract.period.endDate;
-                endDate = endDate.replace(sep, " ");
+                endDate = endDate.replace(/|/g, " ");
+                endDate = endDate.trim();
                 endDate = endDate.replace(/\r?\n|\r/g, " ");
             }
             if (contract.period.durationInDays != null) {
@@ -79,7 +85,8 @@ while (contractLine = liner.next()) {
             }
             if (contract.period.maxExtentDate != null) {
                 maxExtentDate = contract.period.maxExtentDate;
-                maxEntentDate = maxExtentDate.replace(sep, " ");
+                maxEntentDate = maxExtentDate.replace(/|/g, " ");
+                maxExtentDate = maxExtentDate.trim();
                 maxEntentDate = maxExtentDate.replace(/\r?\n|\r/g, " ");
             }
             if (contract.value.amount != null) {
@@ -87,12 +94,14 @@ while (contractLine = liner.next()) {
             }
             if (contract.value.currency != null) {
                 currency = contract.value.currency;
-                currency = currency.replace(sep, " ");
+                currency = currency.replace(/|/g, " ");
+                currency = currency.trim();
                 currency = currency.replace(/\r?\n|\r/g, " ");
             }
             if (contract.dateSigned != null) {
                 dateSigned = contract.dateSigned;
-                dateSigned = dateSigned.replace(sep, " ");
+                dateSigned = dateSigned.replace(/|/g, " ");
+                dateSigned = dateSigned.trim();
                 dateSigned = dateSigned.replace(/\r?\n|\r/g, " ");
             }
 
