@@ -1,5 +1,5 @@
 var readlines = require('n-readlines');
-var fs = require('fs')
+var fs = require('fs');
 var liner = new readlines('base2.json');
 var outputFileName = "createdFiles/parties.txt";
 

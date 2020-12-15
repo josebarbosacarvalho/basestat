@@ -23,20 +23,31 @@ while (contractLine = liner.next()) {
 
                 if (!buyers.has(party.id)) {
                     var buyerNames = new Map();
-                    buyerNames.set(party.name, 1);
+
+                    let partyName = party.name;
+                    partyName = partyName.replace(/\|/g, " ");
+                    partyName = partyName.trim();
+                    partyName = partyName.replace(/\r?\n|\r/g, " ");
+
+                    buyerNames.set(partyName, 1);
                     buyers.set(party.id, buyerNames);
                 }
                 else {
                     // Get existing buyer, and add name occurrence
                     var buyer = buyers.get(party.id);
+                    let partyName = party.name;
+                    partyName = partyName.replace(/\|/g, " ");
+                    partyName = partyName.trim();
+                    partyName = partyName.replace(/\r?\n|\r/g, " ");
+
                     //console.log(buyer);
-                    if (!buyer.get(party.name)) {
-                        buyer.set(party.name, 1);
+                    if (!buyer.get(partyName)) {
+                        buyer.set(partyName, 1);
                     }
                     else {
-                        var count = buyer.get(party.name);
+                        var count = buyer.get(partyName);
                         count++;
-                        buyer.set(party.name, count);
+                        buyer.set(partyName, count);
                     }
 
 

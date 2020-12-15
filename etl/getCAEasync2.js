@@ -48,6 +48,16 @@ const getTodosSeries = async function (items) {
         else {
           var nipc = root.querySelector('#ctl00_MainContent_ipNipc').getAttribute("value");
           var name = root.querySelector('#ctl00_MainContent_ipFirma').getAttribute("value");
+
+          //Remove strange characters from data
+          nipc = nipc.replace(/\|/g, " ");
+          nipc = nipc.trim();
+          nipc = nipc.replace(/\r?\n|\r/g, " ");
+
+          name = name.replace(/\|/g, " ");
+          name = name.trim();
+          name = name.replace(/\r?\n|\r/g, " ");
+
         }
 
         if (nipc == null || name == null)
@@ -80,6 +90,7 @@ const getTodosSeries = async function (items) {
           // DO NOTHING
         }
         else {
+
           var text = nipc + sep + name + sep + listaCAE.get("CAE Principal").id + sep + listaCAE.get("CAE Principal").text + "\r\n";
           // MISSING WRITE TO FILE
           fs.writeFileSync(outputFilePrimary, text, optionsAfter);

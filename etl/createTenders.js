@@ -35,33 +35,40 @@ while (contractLine = liner.next()) {
         let procurementMethodRationale = "";
         if (tender.id != null) {
             id = tender.id;
-            id = id.replace(sep, " ");
+            id = id.replace(/\|/g, " ");
+            id = id.trim();
             id = id.replace(/\r?\n|\r/g, " ");
         }
         if (tender.description != null) {
             description = tender.description;
-            description = description.replace(sep, " ");
+            description = description.replace(/\|/g, " ");
+            description = description.trim();
             description = description.replace(/\r?\n|\r/g, " ");
+
         }
         if (tender.status != null) {
             status = tender.status;
-            status = status.replace(sep, " ");
+            status = status.replace(/\|/g, " ");
+            status = status.trim();
             status = status.replace(/\r?\n|\r/g, " ");
         }
         if (tender.procurementMethod != null) {
             procurementMethod = tender.procurementMethod;
-            procurementMethod = procurementMethod.replace(sep, " ");
+            procurementMethod = procurementMethod.replace(/\|/g, " ");
+            procurementMethod = procurementMethod.trim();
             procurementMethod = procurementMethod.replace(/\r?\n|\r/g, " ");
         }
 
         if (tender.procurementMethodDetails != null) {
             procurementMethodDetails = tender.procurementMethodDetails;
-            procurementMethodDetails = procurementMethodDetails.replace(sep, " ");
+            procurementMethodDetails = procurementMethodDetails.replace(/\|/g, " ");
+            procurementMethodDetails = procurementMethodDetails.trim();
             procurementMethodDetails = procurementMethodDetails.replace(/\r?\n|\r/g, " ");
         }
         if (tender.procurementMethodRationale != null) {
             procurementMethodRationale = tender.procurementMethodRationale;
-            procurementMethodRationale = procurementMethodRationale.replace(sep, " ");
+            procurementMethodRationale = procurementMethodRationale.replace(/\|/g, " ");
+            procurementMethodRationale = procurementMethodRationale.trim();
             procurementMethodRationale = procurementMethodRationale.replace(/\r?\n|\r/g, " ");
         }
 

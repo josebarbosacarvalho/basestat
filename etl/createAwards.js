@@ -30,12 +30,15 @@ while (contractLine = liner.next()) {
 
     contractObject.records.forEach(function (record) {
         var ocid = record.compiledRelease.ocid;
-        ocid = ocid.replace(sep, " ");
+        ocid = ocid.replace(/\|/g, " ");
+        ocid = ocid.trim();
         ocid = ocid.replace(/\r?\n|\r/g, " ");
 
         var tenderId = record.compiledRelease.tender.id;
-        tenderId = tenderId.replace(sep, " ");
+        tenderId = tenderId.replace(/\|/g, " ");
+        tenderId = tenderId.trim();
         tenderId = tenderId.replace(/\r?\n|\r/g, " ");
+
 
         record.compiledRelease.awards.forEach(function (award) {
             var valueAmount = award.value.amount;
@@ -48,24 +51,34 @@ while (contractLine = liner.next()) {
 
             if (award.date != null) {
                 awardDate = award.date;
-                awardDate = awardDate.replace(sep, " ");
+                awardDate = awardDate.replace(/\|/g, " ");
+                awardDate = awardDate.trim();
                 awardDate = awardDate.replace(/\r?\n|\r/g, " ");
+
             }
             if (award.contractPeriod.startDate != null) {
                 awardStartDate = award.contractPeriod.startDate;
-                awardStartDate = awardStartDate.replace(sep, " ");
+                awardStartDate = awardStartDate.replace(/\|/g, " ");
+                awardStartDate = awardStartDate.trim();
                 awardStartDate = awardStartDate.replace(/\r?\n|\r/g, " ");
+
             }
             if (award.contractPeriod.endDate != null) {
                 awardEndDate = award.contractPeriod.endDate;
-                awardEndDate = awardEndDate.replace(sep, " ");
+                awardEndDate = awardEndDate.replace(/\|/g, " ");
+                awardEndDate = awardEndDate.trim();
                 awardEndDate = awardEndDate.replace(/\r?\n|\r/g, " ");
+
             }
-            if (award.contractPeriod.durationInDays != null) { awardDurationInDays = award.contractPeriod.durationInDays; }
+            if (award.contractPeriod.durationInDays != null) {
+                awardDurationInDays = award.contractPeriod.durationInDays;
+            }
             if (award.contractPeriod.maxExtentDate != null) {
                 awardMaxEntentDate = award.contractPeriod.maxExtentDate;
-                awardMaxEntentDate = awardMaxEntentDate.replace(sep, " ");
+                awardMaxEntentDate = awardMaxEntentDate.replace(/\|/g, " ");
+                awardMaxEntentDate = awardMaxEntentDate.trim();
                 awardMaxEntentDate = awardMaxEntentDate.replace(/\r?\n|\r/g, " ");
+
             }
 
 
@@ -74,8 +87,10 @@ while (contractLine = liner.next()) {
 
             award.suppliers.forEach(function (supplier) {
                 let supplierId = supplier.id;
-                supplierId = supplierId.replace(sep, " ");
+                supplierId = supplierId.replace(/\|/g, " ");
+                supplierId = supplierId.trim();
                 supplierId = supplierId.replace(/\r?\n|\r/g, " ");
+
                 var outputLineSupplier = ocid + sep + tenderId + sep + valueAmount + sep + valueCurrency + sep + supplierId + "\r\n";
                 fs.writeFileSync(outputFileNameSuppliers, outputLineSupplier, optionsAfter);
             });
@@ -87,23 +102,32 @@ while (contractLine = liner.next()) {
                 var docDate = "";
                 if (document.documentType != null) {
                     docType = document.documentType;
-                    docType = docType.replace(sep, " ");
+                    docType = docType.replace(/\|/g, " ");
+                    docType = docType.trim();
                     docType = docType.replace(/\r?\n|\r/g, " ");
+
+
                 }
                 if (document.description != null) {
                     docDescription = document.description;
-                    docDescription = docDescription.replace(sep, " ");
+                    docDescription = docDescription.replace(/\|/g, " ");
+                    docDescription = docDescription.trim();
                     docDescription = docDescription.replace(/\r?\n|\r/g, " ");
+
                 }
                 if (document.url != null) {
                     docUrl = document.url;
-                    docUrl = docUrl.replace(sep, " ");
+                    docUrl = docUrl.replace(/\|/g, " ");
+                    docUrl = docUrl.trim();
                     docUrl = docUrl.replace(/\r?\n|\r/g, " ");
+
                 }
                 if (document.datePublished != null) {
                     docDate = document.datePublished;
-                    docDate = docDate.replace(sep, " ");
+                    docDate = docDate.replace(/\|/g, " ");
+                    docDate = docDate.trim();
                     docDate = docDate.replace(/\r?\n|\r/g, " ");
+
                 }
 
                 var outputLineDocument = ocid + sep + tenderId + sep + document.id + sep + docType + sep + docDescription + sep + docUrl + sep + docDate + "\r\n";
