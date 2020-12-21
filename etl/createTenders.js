@@ -1,7 +1,7 @@
 var readlines = require('n-readlines');
 var fs = require('fs')
 var liner = new readlines('base2.json');
-var outputFileName = "createdFiles/tenders.txt";
+var outputFileName = "etl/createdFiles/tenders.txt";
 
 var i = 0;
 var contractLine;
@@ -44,6 +44,7 @@ while (contractLine = liner.next()) {
             description = description.replace(/\|/g, " ");
             description = description.trim();
             description = description.replace(/\r?\n|\r/g, " ");
+            description = description.substring(0, 1800); // truncates the size of the field
 
         }
         if (tender.status != null) {

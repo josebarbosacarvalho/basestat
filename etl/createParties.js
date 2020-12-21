@@ -1,7 +1,7 @@
 var readlines = require('n-readlines');
 var fs = require('fs');
 var liner = new readlines('base2.json');
-var outputFileName = "createdFiles/parties.txt";
+var outputFileName = "etl/createdFiles/parties.txt";
 
 var i = 0;
 var j = 0;
@@ -29,6 +29,12 @@ while (contractLine = liner.next()) {
         var tenderId = record.compiledRelease.tender.id;
         record.compiledRelease.parties.forEach(function (party) {
             var partyId = party.id;
+            if (partyId != null) {
+                partyId = partyId.replace(/\|/g, " ");
+                partyId = partyId.trim();
+                partyId = partyId.replace(/\r?\n|\r/g, " ");
+            }
+
             party.roles.forEach(function (role) {
                 j++;
                 var outputLine = ocid + sep + tenderId + sep + partyId + sep + role + "\r\n";

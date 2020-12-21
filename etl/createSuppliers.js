@@ -1,7 +1,7 @@
 var readlines = require('n-readlines');
 var fs = require('fs')
 var liner = new readlines('base2.json');
-var outputFileName = "createdFiles/suppliers.txt";
+var outputFileName = "etl/createdFiles/suppliers.txt";
 
 var i = 0;
 var contractLine;
@@ -19,9 +19,16 @@ while (contractLine = liner.next()) {
     contractObject.records.forEach(function (record) {
         record.compiledRelease.parties.forEach(function (party) {
             // Return parties that are suppliers
+            let partyId = party.id;
+            if (party.id != null) {
+                partyId = partyId.replace(/\|/g, " ");
+                partyId = partyId.trim();
+                partyId = partyId.replace(/\r?\n|\r/g, " ");
+            }
+
             if (party.roles.find(function (obj) { return (obj == 'supplier' || obj == "tenderer") })) {
 
-                if (!suppliers.has(party.id)) {
+                if (!suppliers.has(partyId)) {
                     var supplierNames = new Map();
                     let partyName = party.name;
                     partyName = partyName.replace(/\|/g, " ");
@@ -29,18 +36,18 @@ while (contractLine = liner.next()) {
                     partyName = partyName.replace(/\r?\n|\r/g, " ");
 
                     supplierNames.set(partyName, 1);
-                    suppliers.set(party.id, supplierNames);
+                    suppliers.set(partyId, supplierNames);
                 }
                 else {
                     // Get existing supplier, and add name occurrence
-                    var supplier = suppliers.get(party.id);
+                    var supplier = suppliers.get(partyId);
                     let partyName = party.name;
                     partyName = partyName.replace(/\|/g, " ");
                     partyName = partyName.trim();
                     partyName = partyName.replace(/\r?\n|\r/g, " ");
 
                     //console.log(supplier);
-                    if (!supplier.get(party.name)) {
+                    if (!supplier.get(partyName)) {
                         supplier.set(partyName, 1);
                     }
                     else {

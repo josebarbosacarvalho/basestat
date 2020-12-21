@@ -5,9 +5,9 @@ const { parse } = require('node-html-parser');
 
 
 const serviceURL = "http://www.sicae.pt/Detalhe.aspx?NIPC=";
-const inputFile = 'createdFiles/buyers.txt';
-const outputFilePrimary = "createdFiles/buyers_primarycae.txt";
-const outputFileAll = "createdFiles/buyers_allCae.txt";
+const inputFile = 'etl/createdFiles/buyers.txt';
+const outputFilePrimary = "etl/createdFiles/buyers_primarycae.txt";
+const outputFileAll = "etl/createdFiles/buyers_allCae.txt";
 const optionsInitial = {
   enconding: "utf-8",
   flag: "w",

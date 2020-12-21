@@ -1,9 +1,9 @@
 var readlines = require('n-readlines');
-var fs = require('fs')
+var fs = require('fs');
 var liner = new readlines('base2.json');
-var outputFileName = "createdFiles/awards.txt";
-var outputFileNameSuppliers = "createdFiles/awardsSuppliers.txt";
-var outputFileNameDocuments = "createdFiles/awardsDocuments.txt";
+var outputFileName = "etl/createdFiles/awards.txt";
+var outputFileNameSuppliers = "etl/createdFiles/awardsSuppliers.txt";
+var outputFileNameDocuments = "etl/createdFiles/awardsDocuments.txt";
 
 var i = 0;
 var contractLine;
@@ -54,6 +54,8 @@ while (contractLine = liner.next()) {
                 awardDate = awardDate.replace(/\|/g, " ");
                 awardDate = awardDate.trim();
                 awardDate = awardDate.replace(/\r?\n|\r/g, " ");
+                awardDate = awardDate.replace("T", " ");
+                awardDate = awardDate.replace("Z", "");
 
             }
             if (award.contractPeriod.startDate != null) {
@@ -61,6 +63,8 @@ while (contractLine = liner.next()) {
                 awardStartDate = awardStartDate.replace(/\|/g, " ");
                 awardStartDate = awardStartDate.trim();
                 awardStartDate = awardStartDate.replace(/\r?\n|\r/g, " ");
+                awardStartDate = awardStartDate.replace("T", " ");
+                awardStartDate = awardStartDate.replace("Z", "");
 
             }
             if (award.contractPeriod.endDate != null) {
@@ -68,6 +72,8 @@ while (contractLine = liner.next()) {
                 awardEndDate = awardEndDate.replace(/\|/g, " ");
                 awardEndDate = awardEndDate.trim();
                 awardEndDate = awardEndDate.replace(/\r?\n|\r/g, " ");
+                awardEndDate = awardEndDate.replace("T", " ");
+                awardEndDate = awardEndDate.replace("Z", "");
 
             }
             if (award.contractPeriod.durationInDays != null) {
@@ -78,6 +84,8 @@ while (contractLine = liner.next()) {
                 awardMaxEntentDate = awardMaxEntentDate.replace(/\|/g, " ");
                 awardMaxEntentDate = awardMaxEntentDate.trim();
                 awardMaxEntentDate = awardMaxEntentDate.replace(/\r?\n|\r/g, " ");
+                awardMaxEntentDate = awardMaxEntentDate.replace("T", " ");
+                awardMaxEntentDate = awardMaxEntentDate.replace("Z", "");
 
             }
 
@@ -127,6 +135,8 @@ while (contractLine = liner.next()) {
                     docDate = docDate.replace(/\|/g, " ");
                     docDate = docDate.trim();
                     docDate = docDate.replace(/\r?\n|\r/g, " ");
+                    docDate = docDate.replace("T", " ");
+                    docDate = docDate.replace("Z", "");
 
                 }
 

@@ -1,7 +1,7 @@
 var readlines = require('n-readlines');
 var fs = require('fs')
 var liner = new readlines('base2.json');
-var outputFileName = "createdFiles/buyers.txt";
+var outputFileName = "etl/createdFiles/buyers.txt";
 
 var i = 0;
 var contractLine;
@@ -19,9 +19,16 @@ while (contractLine = liner.next()) {
     contractObject.records.forEach(function (record) {
         record.compiledRelease.parties.forEach(function (party) {
             // Return parties that are buyers
+            let partyId = party.id;
+            if (party.id != null) {
+                partyId = partyId.replace(/\|/g, " ");
+                partyId = partyId.trim();
+                partyId = partyId.replace(/\r?\n|\r/g, " ");
+            }
+
             if (party.roles.find(function (obj) { return obj == 'buyer' })) {
 
-                if (!buyers.has(party.id)) {
+                if (!buyers.has(partyId)) {
                     var buyerNames = new Map();
 
                     let partyName = party.name;
@@ -30,11 +37,11 @@ while (contractLine = liner.next()) {
                     partyName = partyName.replace(/\r?\n|\r/g, " ");
 
                     buyerNames.set(partyName, 1);
-                    buyers.set(party.id, buyerNames);
+                    buyers.set(partyId, buyerNames);
                 }
                 else {
                     // Get existing buyer, and add name occurrence
-                    var buyer = buyers.get(party.id);
+                    var buyer = buyers.get(partyId);
                     let partyName = party.name;
                     partyName = partyName.replace(/\|/g, " ");
                     partyName = partyName.trim();

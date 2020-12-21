@@ -2,7 +2,7 @@ var readlines = require('n-readlines');
 var fs = require('fs');
 const { start } = require('repl');
 var liner = new readlines('base2.json');
-var outputFileName = "createdFiles/contracts.txt";
+var outputFileName = "etl/createdFiles/contracts.txt";
 
 var i = 0;
 var j = 0;
@@ -72,12 +72,17 @@ while (contractLine = liner.next()) {
                 startDate = startDate.replace(/\|/g, " ");
                 startDate = startDate.trim();
                 startDate = startDate.replace(/\r?\n|\r/g, " ");
+                startDate = startDate.replace("T", " ");
+                startDate = startDate.replace("Z", "");
+
             }
             if (contract.period.endDate != null) {
                 endDate = contract.period.endDate;
                 endDate = endDate.replace(/\|/g, " ");
                 endDate = endDate.trim();
                 endDate = endDate.replace(/\r?\n|\r/g, " ");
+                endDate = endDate.replace("T", " ");
+                endDate = endDate.replace("Z", "");
             }
             if (contract.period.durationInDays != null) {
                 durationInDays = contract.period.durationInDays;
@@ -88,6 +93,8 @@ while (contractLine = liner.next()) {
                 maxEntentDate = maxExtentDate.replace(/\|/g, " ");
                 maxExtentDate = maxExtentDate.trim();
                 maxEntentDate = maxExtentDate.replace(/\r?\n|\r/g, " ");
+                maxExtentDate = maxExtentDate.replace("T", " ");
+                maxExtentDate = maxExtentDate.replace("Z", "");
             }
             if (contract.value.amount != null) {
                 amount = contract.value.amount;
@@ -103,6 +110,8 @@ while (contractLine = liner.next()) {
                 dateSigned = dateSigned.replace(/\|/g, " ");
                 dateSigned = dateSigned.trim();
                 dateSigned = dateSigned.replace(/\r?\n|\r/g, " ");
+                dateSigned = dateSigned.replace("T", " ");
+                dateSigned = dateSigned.replace("Z", "");
             }
 
 

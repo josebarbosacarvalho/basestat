@@ -1,10 +1,10 @@
 etl/calculateFieldsSize.js
-etl/base2-pt-ocds-202010.zip
+base2-pt-ocds-202010.zip
+base2.json
 etl/getCAE.js
 etl/getCAEasync.js
 etl/getLine.js
 etl/searchLine.js
-etl/base2.json
 etl/createdFiles/*
 etl/ExamplesRedShift/*
 etl/Archive/*
