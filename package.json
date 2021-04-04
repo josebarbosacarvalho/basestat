@@ -1,4 +1,5 @@
 {
   "name": "basestat",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "This project aims to publish analytis based on data openly available in the Open Contracting Data Standard (OCDS) format."
 }
