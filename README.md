@@ -10,6 +10,4 @@ Este projeco tem como objetivo publicar análises baseadas em dados abertos disp
 
 O primeiro objetivo é explorar e analizar os [datos disponíveis](https://dados.gov.pt/en/datasets/ocds-portal-base-www-base-gov-pt/) no [Dados.Gov](https://dados.gov.pt/), um portal de dados aberto que publica dados creados creados pelas Instituições de Administração Pública em Portugal. 
 
-publicar os dados do Governo Portugués, que estão disponiveis no seguinte ficheiro: 
-
 Os cidadãos poderão visualizar a mesma informação, sem uma perspectiva agregada, no portal [Base](http://www.base.gov.pt/)
