@@ -1,5 +1,5 @@
 # baseStat (beta)
-This project aims to publish analytis based on data openly available in the Open Contracting Data Standard (OCDS) format. 
+This project aims to publish analytis based on data openly available in the [Open Contracting Data Standard](https://standard.open-contracting.org/) (OCDS) format. 
 
 Our first objective is to publish the data from Portuguese Government in the following file: https://dados.gov.pt/en/datasets/ocds-portal-base-www-base-gov-pt/ 
 
